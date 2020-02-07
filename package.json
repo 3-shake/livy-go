@@ -1,7 +1,7 @@
 {
-  "name": "rdap",
+  "name": "livy",
   "version": "0.0.0-development",
-  "description": "rdap is a simple command line interface based on the rdap module.  The module uses the REST API to communicate with the Jira instance.",
+  "description": "livy is a simple command line interface based on the livy module.  The module uses the REST API to communicate with the Jira instance.",
   "main": "index.js",
   "directories": {
     "example": "examples"
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/3-shake/rdap.git"
+    "url": "https://github.com/locona/livy.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/3-shake/rdap/issues"
+    "url": "https://github.com/locona/livy/issues"
   },
-  "homepage": "https://github.com/3-shake/rdap#readme",
+  "homepage": "https://github.com/locona/livy#readme",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
