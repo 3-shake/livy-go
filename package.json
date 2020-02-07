@@ -1,0 +1,39 @@
+{
+  "name": "rdap",
+  "version": "0.0.0-development",
+  "description": "rdap is a simple command line interface based on the rdap module.  The module uses the REST API to communicate with the Jira instance.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/exec": "^3.3.8",
+    "@semantic-release/git": "^v7.1.0-beta.10",
+    "cz-conventional-changelog": "3.0.2",
+    "semantic-release": "^v16.0.0-beta.46"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3-shake/rdap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3-shake/rdap/issues"
+  },
+  "homepage": "https://github.com/3-shake/rdap#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "conventional-changelog": "^3.1.15",
+    "micromatch": "^4.0.2"
+  }
+}
