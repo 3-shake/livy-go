@@ -7,6 +7,9 @@ import (
 )
 
 func SendRequest(client *http.Client, req *http.Request) (*http.Response, error) {
+	reqHeaders := make(http.Header)
+	reqHeaders.Set("Content-Type", "application/json")
+	req.Header = reqHeaders
 	return client.Do(req)
 
 	// TODO: Send request.

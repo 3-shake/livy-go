@@ -3,14 +3,19 @@ package gensupport
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
+	"strings"
 )
 
 func JSONReader(v interface{}) (io.Reader, error) {
 	buf := new(bytes.Buffer)
-	err := json.NewEncoder(buf).Encode(v)
+	encoder := json.NewEncoder(buf)
+	encoder.SetEscapeHTML(false)
+	err := encoder.Encode(v)
 	if err != nil {
 		return nil, err
 	}
-	return buf, nil
+
+	return bytes.NewBufferString(strings.TrimRight(buf.String(), "\n")), nil
 }

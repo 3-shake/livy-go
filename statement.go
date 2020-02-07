@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/locona/livy/gensupport"
@@ -122,7 +123,7 @@ func (c *StatementsGetCall) doRequest() (*http.Response, error) {
 
 type InsertStatementRequest struct {
 	// The code to execute
-	Code string
+	Code string `json:"code"`
 }
 
 type StatementsInsertCall struct {
@@ -145,9 +146,9 @@ func (c *StatementsInsertCall) Do() (*Statement, error) {
 		return nil, err
 	}
 
+	s, _ := ioutil.ReadAll(res.Body)
 	statement := &Statement{}
 	err = gensupport.DecodeResponse(statement, res)
-
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +157,11 @@ func (c *StatementsInsertCall) Do() (*Statement, error) {
 
 func (c *StatementsInsertCall) doRequest() (*http.Response, error) {
 	url := c.s.BasePath + fmt.Sprintf("/sessions/%v/statements", c.sessionID)
-	var body io.Reader = nil
+	body, err := gensupport.JSONReader(c.insertStatementRequest)
+	if err != nil {
+		return nil, err
+	}
+
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return nil, err

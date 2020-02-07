@@ -2,7 +2,6 @@ package livy
 
 import (
 	"context"
-	"errors"
 	"net/http"
 )
 
@@ -20,23 +19,16 @@ type Service struct {
 	Statements *StatementsService
 }
 
-func NewService(ctx context.Context) (*Service, error) {
-	s, err := New(http.DefaultClient)
-	if err != nil {
-		return nil, err
-	}
-
-	return s, nil
+func NewService(ctx context.Context) *Service {
+	return New(http.DefaultClient)
 
 }
 
-func New(client *http.Client) (*Service, error) {
-	if client == nil {
-		return nil, errors.New("client is nil")
-	}
+func New(client *http.Client) *Service {
 	s := &Service{client: client, BasePath: basePath}
 	s.Batches = NewBatchesService(s)
 	s.Sessions = NewSessionsService(s)
 	s.Statements = NewStatementsService(s)
-	return s, nil
+
+	return s
 }

@@ -59,7 +59,7 @@ type SessionsListCall struct {
 
 type Session struct {
 	ID        int               `json:"id"`
-	AppID     string            `json:"appid"`
+	AppID     string            `json:"appId"`
 	Owner     string            `json:"owner"`
 	ProxyUser string            `json:"proxyUser"`
 	Kind      SessionKind       `json:"kind"`
@@ -73,10 +73,9 @@ func NewSessionsService(s *Service) *SessionsService {
 	return rs
 }
 
-func (r *SessionsService) List(from int, size int) *SessionsListCall {
+func (r *SessionsService) List() *SessionsListCall {
 	c := &SessionsListCall{s: r.s}
-	c.from = from
-	c.size = size
+
 	return c
 }
 
@@ -149,35 +148,35 @@ func (c *SessionsGetCall) doRequest() (*http.Response, error) {
 
 type InsertSessionRequest struct {
 	// The name of this session
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// The session kind
 	Kind SessionKind `json:"kind"`
 	// User to impersonate when starting the session
-	ProxyUser string `json:"proxyUser"`
+	ProxyUser string `json:"proxyUser,omitempty"`
 	// jars to be used in this session
-	Jars []string `json:"jars"`
+	Jars []string `json:"jars,omitempty"`
 	// Python files to be used in this session
-	PyFiles []string `json:"pyFiles"`
+	PyFiles []string `json:"pyFiles,omitempty"`
 	// files to be used in this session
-	Files []string `json:"files"`
+	Files []string `json:"files,omitempty"`
 	// Amount of memory to use for the driver process
-	DriverMemory string `json:"driverMemory"`
+	DriverMemory string `json:"driverMemory,omitempty"`
 	// Number of cores to use for the driver process
-	DriverCores int `json:"driverCores"`
+	DriverCores int `json:"driverCores,omitempty"`
 	// Amount of memory to use per executor process
-	ExecutorMemory string `json:"executorMemory"`
+	ExecutorMemory string `json:"executorMemory,omitempty"`
 	// Number of cores to use for each executor
-	ExecutorCores int `json:"executorCores"`
+	ExecutorCores int `json:"executorCores,omitempty"`
 	// Number of executors to launch for this session
-	NumExecutors int `json:"num_executors"`
+	NumExecutors int `json:"num_executors,omitempty"`
 	// Archives to be used in this session
-	Archives []string `json:"archives"`
+	Archives []string `json:"archives,omitempty"`
 	// The name of the YARN queue to which submitted
-	Queue string `json:"queue"`
+	Queue string `json:"queue,omitempty"`
 	// Spark configuration properties
-	Conf map[string]string `json:"conf"`
+	Conf map[string]string `json:"conf,omitempty"`
 	// Timeout in second to which session be orphaned
-	HeartbeatTimeoutInSecond int `json:"heartbeatTimeoutInSecond"`
+	HeartbeatTimeoutInSecond int `json:"heartbeatTimeoutInSecond,omitempty"`
 }
 
 type SessionsInsertCall struct {
