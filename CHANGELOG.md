@@ -1,3 +1,10 @@
+### [1.0.1](https://github.com/locona/livy/compare/v1.0.0...v1.0.1) (2020-02-17)
+
+
+### Bug Fixes
+
+* Add example case. ([61c764a](https://github.com/locona/livy/commit/61c764a5467fa8d8e04a03d82b9d3bf81db80397))
+
 ## 1.0.0 (2020-02-07)
 
 
