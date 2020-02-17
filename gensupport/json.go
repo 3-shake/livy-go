@@ -3,7 +3,6 @@ package gensupport
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"strings"
 )

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/locona/livy/gensupport"
@@ -27,7 +26,7 @@ type Statement struct {
 	ID     int
 	Code   string
 	State  StatementState
-	Output StatementState
+	Output StatementOutput
 }
 
 type StatementOutput struct {
@@ -146,7 +145,6 @@ func (c *StatementsInsertCall) Do() (*Statement, error) {
 		return nil, err
 	}
 
-	s, _ := ioutil.ReadAll(res.Body)
 	statement := &Statement{}
 	err = gensupport.DecodeResponse(statement, res)
 	if err != nil {
