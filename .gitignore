@@ -1,4 +1,7 @@
 .envrc
 .vscode
 node_modules
-livy
+
+jars/target
+jars/project/target
+jars/project/project

@@ -66,6 +66,9 @@ type Session struct {
 	Log       []string          `json:"log"`
 	State     SessionState      `json:"state"`
 	AppInfo   map[string]string `json:"appInfo"`
+
+	// error message
+	Message string `json:"msg"`
 }
 
 func NewSessionsService(s *Service) *SessionsService {

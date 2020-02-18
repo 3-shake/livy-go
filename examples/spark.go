@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"sync"
+	"os/exec"
+	"strings"
 	"time"
 
 	"github.com/k0kubun/pp"
@@ -24,13 +25,19 @@ func SessionsGet(sessionID int) *livy.Session {
 	return res
 }
 
-func SessionsInsert() *livy.Session {
+func SessionsInsert(localJarPath string) *livy.Session {
 	svc := livy.NewService(context.Background())
-	res, err := svc.Sessions.Insert(&livy.InsertSessionRequest{
+	res, _ := svc.Sessions.Insert(&livy.InsertSessionRequest{
 		Kind: livy.SessionKind_Spark,
+		Jars: []string{
+			fmt.Sprintf("local://%v", localJarPath),
+		},
+		Conf: map[string]string{
+			"spark.driver.extraClassPath": localJarPath,
+		},
 	}).Do()
-	pp.Println(res, err)
 
+	pp.Println(localJarPath, res)
 	return res
 }
 
@@ -71,7 +78,8 @@ func StatementsWait(sessionID, statementID int) *livy.Statement {
 
 	for range t.C {
 		stmt := StatementsGet(sessionID, statementID)
-		pp.Println(stmt)
+		b, _ := stmt.Output.Data.MarshalJSON()
+		pp.Println(string(b))
 		if stmt.State == livy.StatementState_Available {
 			return stmt
 		}
@@ -90,8 +98,10 @@ func StatementsInsert(sessionID int) *livy.Statement {
 		"}.reduce(_ + _);\n" +
 		"println(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
 
-	letter = "val NUM_SAMPLES = 100000;\nval count = sc.parallelize(1 to NUM_SAMPLES).map { i =>\nval x = Math.random();\nval y = Math.random();\nif (x*x + y*y < 1) 1 else 0\n}.reduce(_ + _);\nprintln(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
-	// fmt.Println(dedent.Dedent(letter))
+	letter = "import com.locona.livy._\n" +
+		"val ds = WordCount.executor()\n" +
+		"ds.show(false)\n" +
+		"ds.printSchema"
 	res, err := svc.Statements.Insert(sessionID, &livy.InsertStatementRequest{
 		Code: dedent.Dedent(letter),
 	}).Do()
@@ -105,52 +115,37 @@ func BatchesList() {
 	pp.Println(res, err)
 }
 
-func work() {
-	fmt.Println("#")
-}
+// Stat is exported out of golang convention, rather than necessity
 
-func routine(command <-chan string, wg *sync.WaitGroup) {
-	defer wg.Done()
-	var status = "Play"
-	for {
-		select {
-		case cmd := <-command:
-			switch cmd {
-			case "Stop":
-				return
-			case "Pause":
-				status = "Pause"
-			default:
-				status = "Play"
-			}
-		default:
-			if status == "Play" {
-				work()
-			}
-		}
+func rootPath() (string, error) {
+	path, err := exec.Command("git", "rev-parse", "--show-toplevel").Output()
+	if err != nil {
+		return "", err
 	}
+	fmt.Println(string(path))
+	return strings.TrimSpace(string(path)), nil
 }
 
 func main() {
-	// add your function calls here
-	// sessionID := 0
-	// session := SessionsInsert()
-	session := SessionsGet(0)
+	rootPath, err := rootPath()
+	if err != nil {
+		panic(err)
+	}
+
+	jar := "/jars/target/scala-2.11/root-assembly-1.0.0-SNAPSHOT.jar"
+	jarPath := fmt.Sprintf("%v/%v", rootPath, jar)
+	SessionsInsert(jarPath)
+
+	sessionID := 2
+	// sessionID = session.ID
+	// session := SessionsGet(sessionID)
 	// SessionsDelete(sessionID)
 	// SessionsState(sessionID)
 	// SessionsLog(sessionID)
 
 	// Statement
-	// wg := sync.WaitGroup{}
-	// wg.Add(1)
-	// command := make(chan string)
-	// go routine(command & wg)
 	// StatementsList(sessionID)
-	statement := StatementsInsert(session.ID)
-	pp.Println(session.ID, statement.ID)
-	// statement := StatementsGet(session.ID, statement.ID)
-	statement = StatementsWait(session.ID, statement.ID)
+	statement := StatementsInsert(sessionID)
+	statement = StatementsWait(sessionID, statement.ID)
 	pp.Println(statement)
-	b, _ := statement.Output.Data.MarshalJSON()
-	fmt.Println(string(b))
 }
