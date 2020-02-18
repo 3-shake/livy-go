@@ -1,3 +1,10 @@
+### [1.0.2](https://github.com/locona/livy/compare/v1.0.1...v1.0.2) (2020-02-18)
+
+
+### Improvement
+
+* Add example to call custom jar class. ([6d1b537](https://github.com/locona/livy/commit/6d1b537c13e096f4d43c8e429c9c60fc8356c488))
+
 ### [1.0.1](https://github.com/locona/livy/compare/v1.0.0...v1.0.1) (2020-02-17)
 
 
