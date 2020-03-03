@@ -1,3 +1,10 @@
+### [1.0.3](https://github.com/locona/livy/compare/v1.0.2...v1.0.3) (2020-03-03)
+
+
+### Bug Fixes
+
+* Add name field to session struct & Fix NumExecutors of Insert… ([#1](https://github.com/locona/livy/issues/1)) ([347f72a](https://github.com/locona/livy/commit/347f72aa49db3915a4cd44cb95780e29e15a357b))
+
 ### [1.0.2](https://github.com/locona/livy/compare/v1.0.1...v1.0.2) (2020-02-18)
 
 
