@@ -67,6 +67,9 @@ type Session struct {
 	State     SessionState      `json:"state"`
 	AppInfo   map[string]string `json:"appInfo"`
 
+	//  Not officially https://livy.incubator.apache.org/docs/latest/rest-api.html#session
+	Name string `json:"name"`
+
 	// error message
 	Message string `json:"msg"`
 }
@@ -171,7 +174,7 @@ type InsertSessionRequest struct {
 	// Number of cores to use for each executor
 	ExecutorCores int `json:"executorCores,omitempty"`
 	// Number of executors to launch for this session
-	NumExecutors int `json:"num_executors,omitempty"`
+	NumExecutors int `json:"numExecutors,omitempty"`
 	// Archives to be used in this session
 	Archives []string `json:"archives,omitempty"`
 	// The name of the YARN queue to which submitted
