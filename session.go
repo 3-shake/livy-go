@@ -66,7 +66,9 @@ type Session struct {
 	Log       []string          `json:"log"`
 	State     SessionState      `json:"state"`
 	AppInfo   map[string]string `json:"appInfo"`
-	Name      string            `json:"name"`
+
+	//  Not officially https://livy.incubator.apache.org/docs/latest/rest-api.html#session
+	Name string `json:"name"`
 
 	// error message
 	Message string `json:"msg"`
