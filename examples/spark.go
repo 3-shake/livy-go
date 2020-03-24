@@ -9,7 +9,7 @@ import (
 
 	"github.com/k0kubun/pp"
 	"github.com/lithammer/dedent"
-	livy "github.com/3-shake/livy-go"
+	"github.com/3-shake/livy-go"
 )
 
 func SessionsList() {
