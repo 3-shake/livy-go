@@ -1,4 +1,4 @@
-package com.locona.livy
+package com.example.livy
 
 import com.holdenkarau.spark.testing._
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
