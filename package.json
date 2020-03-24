@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/locona/livy.git"
+    "url": "https://github.com/3-shake/livy-go.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/locona/livy/issues"
+    "url": "https://github.com/3-shake/livy-go/issues"
   },
-  "homepage": "https://github.com/locona/livy#readme",
+  "homepage": "https://github.com/3-shake/livy-go",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
