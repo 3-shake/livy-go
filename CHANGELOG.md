@@ -1,3 +1,10 @@
+### [1.0.4](https://github.com/3-shake/livy-go/compare/v1.0.3...v1.0.4) (2020-03-24)
+
+
+### Bug Fixes
+
+* repository name & rm unnecessary files ([#2](https://github.com/3-shake/livy-go/issues/2)) ([c7b79d3](https://github.com/3-shake/livy-go/commit/c7b79d394107c10162d9038dcc3ff29bf9b523a4))
+
 ### [1.0.3](https://github.com/3-shake/livy-go/compare/v1.0.2...v1.0.3) (2020-03-03)
 
 
