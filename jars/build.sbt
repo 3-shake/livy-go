@@ -3,7 +3,7 @@ import scala.sys.process._
 import scala.reflect.runtime.universe._
 
 // general config
-ThisBuild / organization := "com.locona"
+ThisBuild / organization := "com.example"
 ThisBuild / version := "1.0.0-SNAPSHOT"
 ThisBuild / scalaVersion := "2.11.12"
 ThisBuild / parallelExecution := false
@@ -35,7 +35,7 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file(".")).
   settings(commonSettings: _*).
   settings(
-    mainClass in assembly := Some("com.locona.livy.WordCount")
+    mainClass in assembly := Some("com.example.livy.WordCount")
   )
 
 
@@ -45,7 +45,7 @@ lazy val fj = taskKey[Unit]("")
 fj := {
   val log = sLog.value
 
-  val main   = "com.locona.livy.WordCount"
+  val main   = "com.example.livy.WordCount"
   val fatJar = "./target/scala-2.11/root-assembly-1.0.0-SNAPSHOT.jar"
   val args = Seq()
 

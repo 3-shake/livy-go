@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/locona/livy/gensupport"
+	"github.com/3-shake/livy-go/gensupport"
 )
 
 const (

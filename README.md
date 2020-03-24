@@ -1,1 +1,1 @@
-# livy
+# livy-go
