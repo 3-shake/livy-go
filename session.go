@@ -43,16 +43,13 @@ type SessionsService struct {
 }
 
 type Sessions struct {
-	s     *Service
 	From  int        `json:"from"`
 	Size  int        `json:"size"`
 	Items []*Session `json:"sessions"`
 }
 
 type SessionsListCall struct {
-	s    *Service
-	from int
-	size int
+	s *Service
 }
 
 type Session struct {
@@ -213,7 +210,6 @@ func (c *SessionsInsertCall) Do() (*Session, error) {
 
 func (c *SessionsInsertCall) doRequest() (*http.Response, error) {
 	url := c.s.BasePath + "/sessions"
-	var body io.Reader = nil
 
 	body, err := JSONReader(c.insertSessionRequest)
 	if err != nil {

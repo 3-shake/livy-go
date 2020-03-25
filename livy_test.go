@@ -2,7 +2,6 @@ package livy_test
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/exec"
 	"strings"
@@ -16,6 +15,8 @@ var service = livy.NewService(context.Background())
 var RootPath string
 
 func TestMain(m *testing.M) {
+	rootPath()
+
 	exitVal := m.Run()
 
 	os.Exit(exitVal)
@@ -26,6 +27,6 @@ func rootPath() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(string(path))
+
 	RootPath = strings.TrimSpace(string(path))
 }

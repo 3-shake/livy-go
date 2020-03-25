@@ -20,7 +20,7 @@ func TestSession_List(t *testing.T) {
 }
 
 func TestSession_Get(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 	res, err := service.Sessions.Get(sess.ID).Do()
 	pp.Println(res, err)
 
@@ -36,8 +36,8 @@ func TestSession_Insert(t *testing.T) {
 }
 
 func TestSession_Delete(t *testing.T) {
-	sess, err := insert()
-	err = service.Sessions.Delete(sess.ID).Do()
+	sess, _ := insert()
+	err := service.Sessions.Delete(sess.ID).Do()
 
 	pp.Println(err)
 
@@ -45,7 +45,7 @@ func TestSession_Delete(t *testing.T) {
 }
 
 func TestSession_State(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 	res, err := service.Sessions.State(sess.ID).Do()
 
 	pp.Println(res, err)
@@ -54,7 +54,7 @@ func TestSession_State(t *testing.T) {
 }
 
 func TestSession_Log(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 	res, err := service.Sessions.Log(sess.ID).Do()
 
 	pp.Println(res, err)

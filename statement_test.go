@@ -12,7 +12,7 @@ import (
 )
 
 func TestStatement_List(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 
 	sessionWait(sess.ID)
 	_, _ = statementInsert(sess.ID)
@@ -25,7 +25,7 @@ func TestStatement_List(t *testing.T) {
 }
 
 func TestStatement_Get(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 
 	sessionWait(sess.ID)
 	stmt, _ := statementInsert(sess.ID)
@@ -38,7 +38,7 @@ func TestStatement_Get(t *testing.T) {
 }
 
 func TestStatement_Insert(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 
 	sessionWait(sess.ID)
 	res, err := statementInsert(sess.ID)
@@ -49,7 +49,7 @@ func TestStatement_Insert(t *testing.T) {
 }
 
 func TestStatement_Insert_Wait(t *testing.T) {
-	sess, err := insert()
+	sess, _ := insert()
 
 	sessionWait(sess.ID)
 	letter := "val NUM_SAMPLES = 100000;\n" +
