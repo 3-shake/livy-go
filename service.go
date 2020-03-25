@@ -21,7 +21,6 @@ type Service struct {
 
 func NewService(ctx context.Context) *Service {
 	return New(http.DefaultClient)
-
 }
 
 func New(client *http.Client) *Service {

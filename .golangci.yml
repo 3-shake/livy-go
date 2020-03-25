@@ -1,0 +1,63 @@
+linters-settings:
+  golint:
+    # minimal confidence for issues, default is 0.8
+    min-confidence: 1.1
+
+  lll:
+    line-length: 180
+
+  funlen:
+    lines: 200
+    statements: 130
+  dupl:
+    threshold: 150
+  gocognit:
+    min-complexity: 40
+  errcheck:
+    # report about not checking of errors in type assertions: `a := b.(MyStruct)`;
+    # default is false: such cases aren't reported by default.
+    check-type-assertions: false
+
+    # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`;
+    # default is false: such cases aren't reported by default.
+    check-blank: false
+
+    # [deprecated] comma-separated list of pairs of the form pkg:regex
+    # the regex is used to ignore names within pkg. (default "fmt:.*").
+    # see https://github.com/kisielk/errcheck#the-deprecated-method for details
+    ignore: "fmt:.*,os:.*,Close"
+
+linters:
+  disable:
+    - dupl
+    - maligned
+    - gochecknoglobals
+    - gomnd
+    - wsl
+    - godox
+    - gocyclo
+    - interfacer
+    - unconvert
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - ineffassign
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+  # List of regexps of issue texts to exclude, empty list by default.
+  # But independently from this option we use default exclude patterns,
+  # it can be disabled by `exclude-use-default: false`. To list all
+  # excluded by default patterns execute `golangci-lint run --help`
+  exclude:
+      - should have comment or be unexported
+      - S1000
+      - ST1000
+      - ST1003
+      - ST1020
+      - ST1021
+      - G304
+      - G402
