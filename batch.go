@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/3-shake/livy-go/gensupport"
 )
 
 type BatchesService struct {
@@ -47,7 +45,7 @@ func (c *BatchesListCall) Do() (*Batches, error) {
 	}
 
 	batches := &Batches{}
-	err = gensupport.DecodeResponse(batches, res)
+	err = DecodeResponse(batches, res)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +60,7 @@ func (c *BatchesListCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type BatchesGetCall struct {
@@ -84,7 +82,7 @@ func (c *BatchesGetCall) Do() (*Batch, error) {
 	}
 
 	batch := &Batch{}
-	err = gensupport.DecodeResponse(batch, res)
+	err = DecodeResponse(batch, res)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +97,7 @@ func (c *BatchesGetCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type BatchState struct {
@@ -126,7 +124,7 @@ func (c *BatchesStateCall) Do() (*BatchState, error) {
 	}
 
 	state := &BatchState{}
-	err = gensupport.DecodeResponse(state, res)
+	err = DecodeResponse(state, res)
 	if err != nil {
 		return nil, err
 	}
@@ -141,7 +139,7 @@ func (c *BatchesStateCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type BatchesDeleteCall struct {
@@ -176,7 +174,7 @@ func (c *BatchesDeleteCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type BatchLogResponse struct {
@@ -208,7 +206,7 @@ func (c *BatchesLogCall) Do() (*BatchLogResponse, error) {
 
 	batchLog := &BatchLogResponse{}
 
-	err = gensupport.DecodeResponse(batchLog, res)
+	err = DecodeResponse(batchLog, res)
 	if err != nil {
 		return nil, err
 	}
@@ -225,5 +223,5 @@ func (c *BatchesLogCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }

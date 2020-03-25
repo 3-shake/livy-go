@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/3-shake/livy-go/gensupport"
 )
 
 const (
@@ -92,7 +90,7 @@ func (c *SessionsListCall) Do() (*Sessions, error) {
 	}
 
 	sessions := &Sessions{}
-	err = gensupport.DecodeResponse(sessions, res)
+	err = DecodeResponse(sessions, res)
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +105,7 @@ func (c *SessionsListCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type SessionsGetCall struct {
@@ -132,7 +130,7 @@ func (c *SessionsGetCall) Do() (*Session, error) {
 
 	session := &Session{}
 
-	err = gensupport.DecodeResponse(session, res)
+	err = DecodeResponse(session, res)
 	if err != nil {
 		return nil, err
 	}
@@ -149,7 +147,7 @@ func (c *SessionsGetCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type InsertSessionRequest struct {
@@ -205,7 +203,7 @@ func (c *SessionsInsertCall) Do() (*Session, error) {
 	}
 
 	session := &Session{}
-	err = gensupport.DecodeResponse(session, res)
+	err = DecodeResponse(session, res)
 	if err != nil {
 		return nil, err
 	}
@@ -217,7 +215,7 @@ func (c *SessionsInsertCall) doRequest() (*http.Response, error) {
 	url := c.s.BasePath + "/sessions"
 	var body io.Reader = nil
 
-	body, err := gensupport.JSONReader(c.insertSessionRequest)
+	body, err := JSONReader(c.insertSessionRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -227,7 +225,7 @@ func (c *SessionsInsertCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type SessionsDeleteCall struct {
@@ -262,7 +260,7 @@ func (c *SessionsDeleteCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type SessionStateResponse struct {
@@ -292,7 +290,7 @@ func (c *SessionsGetStateCall) Do() (*SessionStateResponse, error) {
 
 	sessionState := &SessionStateResponse{}
 
-	err = gensupport.DecodeResponse(sessionState, res)
+	err = DecodeResponse(sessionState, res)
 	if err != nil {
 		return nil, err
 	}
@@ -309,7 +307,7 @@ func (c *SessionsGetStateCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }
 
 type SessionLogResponse struct {
@@ -341,7 +339,7 @@ func (c *SessionsLogCall) Do() (*SessionLogResponse, error) {
 
 	sessionLog := &SessionLogResponse{}
 
-	err = gensupport.DecodeResponse(sessionLog, res)
+	err = DecodeResponse(sessionLog, res)
 	if err != nil {
 		return nil, err
 	}
@@ -358,5 +356,5 @@ func (c *SessionsLogCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
-	return gensupport.SendRequest(c.s.client, req)
+	return SendRequest(c.s.client, req)
 }

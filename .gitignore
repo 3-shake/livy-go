@@ -1,6 +1,9 @@
 .envrc
 .vscode
+.bin
+*.zip
 node_modules
+apache-livy-0.7.0-incubating-bin
 
 jars/target
 jars/project/target
