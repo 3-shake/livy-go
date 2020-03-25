@@ -1,3 +1,15 @@
+### [1.0.5](https://github.com/3-shake/livy-go/compare/v1.0.4...v1.0.5) (2020-03-25)
+
+
+### Bug Fixes
+
+* use release-branch with semantic-release. ([#4](https://github.com/3-shake/livy-go/issues/4)) ([31e5faf](https://github.com/3-shake/livy-go/commit/31e5fafb34a64fa6e04fc5eebd6b330f7eff90d7))
+
+
+### Improvement
+
+* Add wait option to Statements.Insert and testcase. ([#3](https://github.com/3-shake/livy-go/issues/3)) ([1c152ca](https://github.com/3-shake/livy-go/commit/1c152ca5e03de1f5e9943d508eac6b066ffc0b5d))
+
 ### [1.0.4](https://github.com/3-shake/livy-go/compare/v1.0.3...v1.0.4) (2020-03-24)
 
 
