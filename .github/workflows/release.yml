@@ -1,8 +1,9 @@
 name: Release
 on:
   push:
+    # Sequence of patterns matched against refs/heads
     branches:
-      - master
+      - 'release/**'  # Push events to branches matching refs/heads/releases/10
 jobs:
   release:
     name: Release
