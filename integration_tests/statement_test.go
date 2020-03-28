@@ -52,15 +52,7 @@ func TestStatement_Insert_Wait(t *testing.T) {
 	sess, _ := insert()
 
 	sessionWait(sess.ID)
-	letter := "val NUM_SAMPLES = 100000;\n" +
-		"val count = sc.parallelize(1 to NUM_SAMPLES).map { i => \n" +
-		"val x = Math.random();\n" +
-		"val y = Math.random();\n" +
-		"if (x*x + y*y < 1) 1 else 0\n" +
-		"}.reduce(_ + _);\n" +
-		"println(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
-
-	letter = "import com.example.livy._\n" +
+	letter := "import com.example.livy._\n" +
 		"val ds = WordCount.executor()\n" +
 		"ds.show(false)\n" +
 		"ds.printSchema"
@@ -88,15 +80,7 @@ func sessionWait(sessionID int) {
 }
 
 func statementInsert(sessionID int) (*livy.Statement, error) {
-	letter := "val NUM_SAMPLES = 100000;\n" +
-		"val count = sc.parallelize(1 to NUM_SAMPLES).map { i => \n" +
-		"val x = Math.random();\n" +
-		"val y = Math.random();\n" +
-		"if (x*x + y*y < 1) 1 else 0\n" +
-		"}.reduce(_ + _);\n" +
-		"println(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
-
-	letter = "import com.example.livy._\n" +
+	letter := "import com.example.livy._\n" +
 		"val ds = WordCount.executor()\n" +
 		"ds.show(false)\n" +
 		"ds.printSchema"
