@@ -24,8 +24,8 @@ jobs:
     - name: Install livy
       run: |
         sudo apt-get install wget ca-certificates unzip tar
-        mkdir -p ~/opt
-        cd ~/opt
+        mkdir -p /opt
+        cd /opt
         wget https://ftp.jaist.ac.jp/pub/apache/incubator/livy/${LIVY_VERSION}-incubating/apache-livy-${LIVY_VERSION}-incubating-bin.zip -O livy.zip
         unzip livy.zip
         rm livy.zip
@@ -44,12 +44,12 @@ jobs:
 
     - name: Start livy server
       run: |
-        export LIVY_CONF_DIR=~/opt/livy/conf/livy.conf
-        export SPARK_HOME=~/opt/spark
-        export HADOOP_HOME=~/opt/hadoop
-        export HADOOP_CONF_DIR=~/opt/hadoop/conf
-        export SPARK_DIST_CLASSPATH=$(~/opt/hadoop/bin/hadoop classpath)
-        ~/opt/livy/bin/livy-server start
+        export LIVY_CONF_DIR=/opt/livy/conf/livy.conf
+        export SPARK_HOME=/opt/spark
+        export HADOOP_HOME=/opt/hadoop
+        export HADOOP_CONF_DIR=/opt/hadoop/conf
+        export SPARK_DIST_CLASSPATH=$(/opt/hadoop/bin/hadoop classpath)
+        /opt/livy/bin/livy-server start
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Assembly jar
