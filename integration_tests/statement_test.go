@@ -60,7 +60,7 @@ func TestStatement_Insert_Wait(t *testing.T) {
 		"}.reduce(_ + _);\n" +
 		"println(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
 
-	letter = "import com.locona.livy._\n" +
+	letter = "import com.example.livy._\n" +
 		"val ds = WordCount.executor()\n" +
 		"ds.show(false)\n" +
 		"ds.printSchema"
@@ -96,7 +96,7 @@ func statementInsert(sessionID int) (*livy.Statement, error) {
 		"}.reduce(_ + _);\n" +
 		"println(\"Pi is roughly \" + 4.0 * count / NUM_SAMPLES)"
 
-	letter = "import com.locona.livy._\n" +
+	letter = "import com.example.livy._\n" +
 		"val ds = WordCount.executor()\n" +
 		"ds.show(false)\n" +
 		"ds.printSchema"

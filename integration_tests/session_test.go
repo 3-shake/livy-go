@@ -65,7 +65,7 @@ func TestSession_Log(t *testing.T) {
 func insert() (*livy.Session, error) {
 	rootPath := RootPath
 
-	jar := "/jars/target/scala-2.11/root-assembly-1.0.0-SNAPSHOT.jar"
+	jar := "/integration_tests/wordcount/target/scala-2.11/root-assembly-1.0.0-SNAPSHOT.jar"
 	jarPath := fmt.Sprintf("%v/%v", rootPath, jar)
 
 	uid := uuid.New()

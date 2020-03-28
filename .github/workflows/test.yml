@@ -1,0 +1,60 @@
+name: Test
+on: [push, pull_request]
+env:
+  LIVY_VERSION: 0.7.0
+  SPARK_VERSION: 2.4.5
+  HADOOP_VERSION: 2.10.0
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.13.x, 1.14.x]
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Install java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Install sbt
+      uses: docker://hseeberger/scala-sbt:8u222_1.3.5_2.13.1
+    - name: Install livy
+      run: |
+        sudo apt-get install wget ca-certificates unzip tar
+        mkdir -p ~/opt
+        cd ~/opt
+        wget https://ftp.jaist.ac.jp/pub/apache/incubator/livy/${LIVY_VERSION}-incubating/apache-livy-${LIVY_VERSION}-incubating-bin.zip -O livy.zip
+        unzip livy.zip
+        rm livy.zip
+        ln -s apache-livy-${LIVY_VERSION}-incubating-bin livy
+        cp livy/conf/livy.conf.template livy/conf/livy.conf
+
+        wget https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz -O spark.tgz
+        tar -xvzf spark.tgz
+        rm spark.tgz
+        ln -s spark-${SPARK_VERSION}-bin-without-hadoop spark
+
+        wget https://downloads.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz -O hadoop.tar.gz
+        tar -xvzf hadoop.tar.gz
+        rm hadoop.tar.gz
+        ln -s hadoop-${HADOOP_VERSION} hadoop
+
+    - name: Start livy server
+      run: |
+        export LIVY_CONF_DIR=~/opt/livy/conf/livy.conf
+        export SPARK_HOME=~/opt/spark
+        export HADOOP_HOME=~/opt/hadoop
+        export HADOOP_CONF_DIR=~/opt/hadoop/conf
+        export SPARK_DIST_CLASSPATH=$(~/opt/hadoop/bin/hadoop classpath)
+        ~/opt/livy/bin/livy-server start
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Assembly jar
+      run: sbt assembly
+      working-directory: ./integration_tests/wordcount
+    - name: Integration Test
+      run: go test -v -timeout 20m ./...
+      working-directory: ./integration_tests
