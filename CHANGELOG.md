@@ -1,3 +1,10 @@
+### [1.0.6](https://github.com/3-shake/livy-go/compare/v1.0.5...v1.0.6) (2020-03-29)
+
+
+### Improvement
+
+* add ci test ([#5](https://github.com/3-shake/livy-go/issues/5)) ([22117aa](https://github.com/3-shake/livy-go/commit/22117aa2e17764c3a16b258eddf5ee543dff9050))
+
 ### [1.0.5](https://github.com/3-shake/livy-go/compare/v1.0.4...v1.0.5) (2020-03-25)
 
 
