@@ -5,6 +5,6 @@
 node_modules
 apache-livy-0.7.0-incubating-bin
 
-jars/target
-jars/project/target
-jars/project/project
+integration_tests/wordcount/target
+integration_tests/wordcount/project/target
+integration_tests/wordcount/project/project
