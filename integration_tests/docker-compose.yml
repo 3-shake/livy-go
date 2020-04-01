@@ -1,0 +1,8 @@
+version: '3'
+services:
+  livy:
+    image: thekuwayama/livy:0.7.0
+    container_name: livy
+    ports:
+      - 8998:8998
+    restart: always
