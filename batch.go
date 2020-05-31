@@ -225,3 +225,82 @@ func (c *BatchesLogCall) doRequest() (*http.Response, error) {
 
 	return SendRequest(c.s.client, req)
 }
+
+type InsertBatchRequest struct {
+	// File containing the application to execute
+	File string `json:"file"`
+	// User to impersonate when starting the batch
+	ProxyUser string `json:"proxyUser,omitempty"`
+	// Application Java/Spark main class
+	ClassName string `json:"className,omitempty"`
+	// Command line arguments for the application
+	Args []string `json:"args,omitempty"`
+	// jars to be used in this session
+	Jars []string `json:"jars,omitempty"`
+	// Python files to be used in this session
+	PyFiles []string `json:"pyFiles,omitempty"`
+	// files to be used in this session
+	Files []string `json:"files,omitempty"`
+	// Amount of memory to use for the driver process
+	DriverMemory string `json:"driverMemory,omitempty"`
+	// Number of cores to use for the driver process
+	DriverCores int `json:"driverCores,omitempty"`
+	// Amount of memory to use per executor process
+	ExecutorMemory string `json:"executorMemory,omitempty"`
+	// Number of cores to use for each executor
+	ExecutorCores int `json:"executorCores,omitempty"`
+	// Number of executors to launch for this session
+	NumExecutors int `json:"numExecutors,omitempty"`
+	// Archives to be used in this session
+	Archives []string `json:"archives,omitempty"`
+	// The name of the YARN queue to which submitted
+	Queue string `json:"queue,omitempty"`
+	// The name of this session
+	Name string `json:"name,omitempty"`
+	// Spark configuration properties
+	Conf map[string]string `json:"conf,omitempty"`
+}
+
+type BatchesInsertCall struct {
+	s                  *Service
+	insertBatchRequest *InsertBatchRequest
+}
+
+// Insert: Creates a new batch.
+func (r *BatchesService) Insert(insertBatchRequest *InsertBatchRequest) *BatchesInsertCall {
+	c := &BatchesInsertCall{s: r.s}
+	c.insertBatchRequest = insertBatchRequest
+
+	return c
+}
+
+func (c *BatchesInsertCall) Do() (*Batch, error) {
+	res, err := c.doRequest()
+	if err != nil {
+		return nil, err
+	}
+
+	batch := &Batch{}
+	err = DecodeResponse(batch, res)
+	if err != nil {
+		return nil, err
+	}
+
+	return batch, nil
+}
+
+func (c *BatchesInsertCall) doRequest() (*http.Response, error) {
+	url := c.s.BasePath + "/batches"
+
+	body, err := JSONReader(c.insertBatchRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	return SendRequest(c.s.client, req)
+}
