@@ -30,6 +30,8 @@ jobs:
         rm livy.zip
         ln -s apache-livy-${LIVY_VERSION}-incubating-bin livy
         cp livy/conf/livy.conf.template livy/conf/livy.conf
+        echo "livy.file.local-dir-whitelist = /work" >> /opt/livy/conf/livy.conf
+        sudo mkdir -p /work
 
         wget https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz -O spark.tgz
         tar -xvzf spark.tgz
