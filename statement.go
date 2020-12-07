@@ -25,10 +25,11 @@ type Statements struct {
 }
 
 type Statement struct {
-	ID     int
-	Code   string
-	State  StatementState
-	Output StatementOutput
+	ID      int
+	Code    string
+	State   StatementState
+	Output  StatementOutput
+	Started int64
 }
 
 type StatementOutput struct {
