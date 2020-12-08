@@ -1,3 +1,23 @@
+## [1.1.0](https://github.com/3-shake/livy-go/compare/v1.0.4...v1.1.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* cancel statementリクエストを追加 ([#11](https://github.com/3-shake/livy-go/issues/11)) ([3c1d8e2](https://github.com/3-shake/livy-go/commit/3c1d8e21d9ce5cc5dda7fb29b4476a212748d1ce))
+* use release-branch with semantic-release. ([#4](https://github.com/3-shake/livy-go/issues/4)) ([31e5faf](https://github.com/3-shake/livy-go/commit/31e5fafb34a64fa6e04fc5eebd6b330f7eff90d7))
+
+
+### Improvement
+
+* add ci test ([#5](https://github.com/3-shake/livy-go/issues/5)) ([4f23ed5](https://github.com/3-shake/livy-go/commit/4f23ed53bbd13b8fc1509ef7450997c9443c5266))
+* add docker-compose.yml for tests ([#6](https://github.com/3-shake/livy-go/issues/6)) ([7b8a7fc](https://github.com/3-shake/livy-go/commit/7b8a7fc19ffbbf5ac0e1dc339b3ffc4c5144965d))
+* Add wait option to Statements.Insert and testcase. ([#3](https://github.com/3-shake/livy-go/issues/3)) ([1c152ca](https://github.com/3-shake/livy-go/commit/1c152ca5e03de1f5e9943d508eac6b066ffc0b5d))
+
+
+### New Features
+
+* **batch:** Implement InsertBatch ([#7](https://github.com/3-shake/livy-go/issues/7)) ([164cc3e](https://github.com/3-shake/livy-go/commit/164cc3e1fefa1e67836f2851d3e62cd0afe018e9))
+
 ### [1.0.4](https://github.com/3-shake/livy-go/compare/v1.0.3...v1.0.4) (2020-03-24)
 
 
