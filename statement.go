@@ -25,10 +25,11 @@ type Statements struct {
 }
 
 type Statement struct {
-	ID     int
-	Code   string
-	State  StatementState
-	Output StatementOutput
+	ID      int
+	Code    string
+	State   StatementState
+	Output  StatementOutput
+	Started int64
 }
 
 type StatementOutput struct {
@@ -182,6 +183,46 @@ func (c *StatementsInsertCall) doRequest() (*http.Response, error) {
 		return nil, err
 	}
 
+	req, err := http.NewRequest("POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	return SendRequest(c.s.client, req)
+}
+
+type StatementsCancelCall struct {
+	s           *Service
+	sessionID   int
+	statementID int
+}
+
+func (r *StatementsService) Cancel(sessionID, statementID int) *StatementsCancelCall {
+	c := &StatementsCancelCall{s: r.s}
+	c.sessionID = sessionID
+	c.statementID = statementID
+
+	return c
+}
+
+func (c *StatementsCancelCall) Do() (*Statement, error) {
+	res, err := c.doRequest()
+	if err != nil {
+		return nil, err
+	}
+
+	statement := &Statement{}
+	err = DecodeResponse(statement, res)
+
+	if err != nil {
+		return nil, err
+	}
+	return statement, nil
+}
+
+func (c *StatementsCancelCall) doRequest() (*http.Response, error) {
+	url := c.s.BasePath + fmt.Sprintf("/sessions/%v/statements/%v/cancel", c.sessionID, c.statementID)
+	var body io.Reader = nil
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return nil, err
