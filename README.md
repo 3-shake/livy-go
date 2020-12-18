@@ -1,5 +1,9 @@
 # livy-go
 
+[![Actions Status](https://github.com/3-shake/livy-go/workflows/Test/badge.svg)](https://github.com/3-shake/livy-go/actions?workflow=Test)
+[![Go Report Card](https://goreportcard.com/badge/github.com/3-shake/livy-go)](https://goreportcard.com/report/github.com/3-shake/livy-go)
+[![Documentation](https://godoc.org/github.com/3-shake/livy-go?status.svg)](http://godoc.org/github.com/3-shake/livy-go)
+
 ## Getting Started
 
 ### Livy Setup
