@@ -33,12 +33,12 @@ jobs:
         echo "livy.file.local-dir-whitelist = /work" >> /opt/livy/conf/livy.conf
         sudo mkdir -p /work
 
-        wget https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz -O spark.tgz
+        wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz -O spark.tgz
         tar -xvzf spark.tgz
         rm spark.tgz
         ln -s spark-${SPARK_VERSION}-bin-without-hadoop spark
 
-        wget https://downloads.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz -O hadoop.tar.gz
+        wget https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz -O hadoop.tar.gz
         tar -xvzf hadoop.tar.gz
         rm hadoop.tar.gz
         ln -s hadoop-${HADOOP_VERSION} hadoop
