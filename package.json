@@ -22,7 +22,7 @@
     "url": "https://github.com/3-shake/livy-go.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/3-shake/livy-go/issues"
   },
