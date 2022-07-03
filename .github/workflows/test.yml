@@ -13,11 +13,11 @@ jobs:
         go-version: [1.13.x, 1.14.x]
     steps:
     - name: Install Go
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
     - name: Install java
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
         java-version: ${{ env.JAVA_VERSION }}
     - name: Install livy
@@ -52,7 +52,7 @@ jobs:
         export SPARK_DIST_CLASSPATH=$(/opt/hadoop/bin/hadoop classpath)
         /opt/livy/bin/livy-server start
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Assembly jar
       run: sbt assembly
       working-directory: ./integration_tests/wordcount
