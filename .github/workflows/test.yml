@@ -1,7 +1,7 @@
 name: Test
 on: [push, pull_request]
 env:
-  JAVA_VERSION: 1.8
+  JAVA_VERSION: 8
   LIVY_VERSION: 0.7.0
   SPARK_VERSION: 2.4.5
   HADOOP_VERSION: 2.10.0
@@ -19,6 +19,7 @@ jobs:
     - name: Install java
       uses: actions/setup-java@v3
       with:
+        distribution: 'adopt'
         java-version: ${{ env.JAVA_VERSION }}
     - name: Install livy
       run: |
